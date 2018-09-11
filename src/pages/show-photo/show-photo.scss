@@ -1,0 +1,54 @@
+page-show-photo {
+
+  background-color: white;
+
+  .thumb-img {
+    padding: 5px !important;
+  }
+
+  .title-slider {
+    text-transform: capitalize;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 13px;
+    color: #999999;
+  }
+
+  .active {
+    text-transform: capitalize;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 13px;
+    color: #313131;
+  }
+
+  .item-md.item-block .item-inner {
+    border: none !important;
+  }
+
+  ion-slides {
+    margin-top: 10px;
+    height: inherit;
+  }
+
+  .border-filter {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #DBDBDB;
+    margin-top: 8px;
+    display: inline-block;
+  }
+
+  .icon-filter {
+    font-size: 3.2em;
+    padding-top: 20px;
+  }
+
+  .dot{
+    font-size: 25px;
+    color: darkgray;
+    font-weight: bolder;
+  }
+
+}

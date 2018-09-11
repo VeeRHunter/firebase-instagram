@@ -1,0 +1,15 @@
+page-tabs {
+  .tabs-ios .tab-button[aria-selected=true],
+  .tabs-md .tab-button[aria-selected=true],
+  .tabs-wp .tab-button[aria-selected=true] {
+    // background: #000000; //#282828;
+    border-top: solid 0.25em $dark;
+    
+  }
+  
+  .tabs-ios .tab-button,
+  .tabs-md .tab-button,
+  .tabs-wp .tab-button {
+    background: #FAFAFA;// rgb(5, 89, 158);; //#333;
+  }
+}

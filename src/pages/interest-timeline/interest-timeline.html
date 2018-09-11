@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar >    
+    <ion-title >{{hash?search: 'Search'}}</ion-title>
+  </ion-navbar>
+  <ion-toolbar color="light">
+    <ion-searchbar [(ngModel)]="search"></ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content cache-view="false">
+  <ion-segment [(ngModel)]="icons" color="primary">
+    <ion-segment-button value="post">
+      <ion-icon name="md-apps"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="people">
+      <ion-icon name="person"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="hashtag">
+      <i class="fa fa-hashtag"></i>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div #storiessearch id="storiessearch" padding=""></div>
+  
+  <div [ngSwitch]="icons">
+    <div *ngSwitchCase="'post'">
+      <div>
+        <ion-grid>
+          <ion-row>
+            <ion-col *ngFor="let photo of timelineData | hashtag : search" col-4 class="col-image" (press)="openOptions(photo.image)">
+
+              <img src={{photo.image}} (click)="viewPost(photo)">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+    <div *ngSwitchCase="'people'">
+      <ion-list *ngIf="users" no-lines>
+        <ion-item *ngFor="let user of users | profilename : search" (click)="viewUser(user.userId)">
+          <ion-avatar item-left tappable>
+            <img src="{{user.avatar}}">
+          </ion-avatar>
+          <h2>{{user.name}}</h2>
+          <p>{{user.description}}</p>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'hashtag'">
+      <div>
+        <ion-grid>
+          <ion-row>
+            <ion-col *ngFor="let photo of timelineData | hashtag : search" col-4 class="col-image" (press)="openOptions(photo.image)">
+              <img src={{photo.image}} (click)="viewPost(photo)">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

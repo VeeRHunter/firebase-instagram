@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="user">  
+    <div style="text-align: center">
+        <p style="color: black;font-size: 20px;">{{user.name}}</p>
+    </div>
+    <!-- Profile Menu -->
+    <ion-list>
+      <ion-item no-lines tappable (click)="setName()">
+        Set Profile Name
+        <ion-icon name="md-contact" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setUsername()">
+        Set Username
+        <ion-icon name="md-at" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setDescription()">
+        Set Description
+        <ion-icon name="md-clipboard" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setPhoto()">
+        Set Profile Photo
+        <ion-icon name="ios-camera" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setEmail()">
+        Change Email Address
+        <ion-icon name="md-mail-open" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setPassword()" *ngIf="user && user.provider == 'Firebase'">
+        Change Password
+        <ion-icon name="md-key" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="deleteAccount()">
+        Delete Account
+        <ion-icon name="md-trash" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable style="padding-right: 7px;">
+        <ion-label>Type</ion-label>
+        <ion-select [(ngModel)]="type" (ionChange) = "onTypeChanged()">
+            <ion-option value="0">admin</ion-option>
+            <ion-option value="1">manager</ion-option>
+            <ion-option value="2">user</ion-option>
+            <ion-option value="3">channel</ion-option>
+            <ion-option value="4">location</ion-option>
+            <ion-option value="5">tag</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item no-lines tappable style="padding-right: 7px;">
+        <ion-label>Status</ion-label>
+        <ion-select [(ngModel)]="status" (ionChange) = "onStatusChanged()">
+          <ion-option value="0">public</ion-option>
+          <ion-option value="1">private</ion-option>
+          <ion-option value="2">disable</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item no-lines tappable (click)="chooseColor()" >
+          Color
+          <ion-icon name="md-color-palette" item-right [ngStyle] = "{'color' : color}"></ion-icon>
+        </ion-item>
+      <ion-item no-lines tappable (click)="logout()">
+        Logout
+        <ion-icon name="md-log-out" item-right></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

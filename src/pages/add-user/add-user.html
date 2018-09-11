@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Create new user</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="user">           
+    
+    <!-- Profile Menu -->
+
+    <ion-list>
+      <ion-item no-lines tappable (click)="setName()">
+        Set Profile Name
+        <ion-icon name="md-contact" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setUsername()">
+        Set Username
+        <ion-icon name="md-at" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setDescription()">
+        Set Description
+        <ion-icon name="md-clipboard" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setPhoto()">
+        Set Profile Photo
+        <ion-icon name="ios-camera" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable style="padding-right: 7px;">
+        <ion-label>Type</ion-label>
+        <ion-select [(ngModel)]="type" (ionChange) = "onTypeChanged()">
+            <ion-option value="0">admin</ion-option>
+            <ion-option value="1">manager</ion-option>
+            <ion-option value="2">user</ion-option>
+            <ion-option value="3">channel</ion-option>
+            <ion-option value="4">location</ion-option>
+            <ion-option value="5">tag</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item no-lines tappable style="padding-right: 7px;">
+        <ion-label>Status</ion-label>
+        <ion-select [(ngModel)]="status" (ionChange) = "onStatusChanged()">
+          <ion-option value="0">public</ion-option>
+          <ion-option value="1">private</ion-option>
+          <ion-option value="2">disable</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item no-lines tappable (click)="chooseColor()" >
+          Color
+          <ion-icon name="md-color-palette" item-right [ngStyle] = "{'color' : color}"></ion-icon>
+        </ion-item>
+    </ion-list>
+  </div>
+    <div style="width: 100%;text-align: center;">
+      <button ion-button color="primary" style="width: 40%;" (click)="createUser()">Create</button>
+    </div>
+</ion-content>

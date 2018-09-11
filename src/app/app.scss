@@ -1,0 +1,407 @@
+// http://ionicframework.com/docs/v2/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+html, body, ion-app, div.nav-decor, .ion-content, .app-root { background-color: transparent !important; }
+
+//Background of the screens
+.scroll-content {
+//  background-image: url('../assets/images/background.png');
+  background-color: white; 
+  background-position: initial initial;
+  background-repeat: initial initial;
+}
+
+//Add class="no-scroll" on <ion-content> to disable scrolling
+.no-scroll .scroll-content {
+  overflow: hidden;
+}
+
+//Center Class to align content to center.
+.center {
+  text-align: center;
+}
+
+//Set header buttons and title to white
+ion-header {
+  button,
+  ion-title p {
+    color: $dark !important;
+  }
+  ion-title .toolbar-title{
+    color: $dark !important;
+  }
+}
+
+//Empty List
+.empty-list {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+
+  h1,
+  p {
+    color: $gray;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  p {
+    font-size: 1.125em;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  button {
+    background: $dark;
+  }
+
+  button.activated,
+  button:active {
+    background: $dark-active;
+  }
+}
+
+//Avatar List
+ion-list.avatar-list {
+  ion-item {
+    background: rgba(0, 0, 0, 0.3) !important;
+
+    h2 {
+      color: #fff;
+    }
+
+    h3 {
+      color: $dark-active;
+
+      ion-icon.selected {
+        color: $primary;
+      }
+    }
+
+    p {
+      color: $primary !important;
+      max-width: 68vw;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    ion-avatar {
+      img {
+        width: 2.5em !important;
+        height: 2.5em !important;
+      }
+    }
+  }
+
+  ion-item.selected,
+  ion-item:active {
+    opacity: 0.5;
+  }
+
+  ion-fab button,
+  ion-fab button.activated {
+    background: transparent !important;
+  }
+
+  ion-fab button.activated ion-icon {
+    opacity: 0.5 !important;
+  }
+
+  ion-fab button ion-icon {
+    font-size: 2em !important;
+    color: $primary;
+  }
+
+  ion-icon.success {
+    color: $primary;
+  }
+
+  ion-icon.danger {
+    color: color($colors, danger);
+  }
+}
+
+//Messages Content for message.html and group.html
+div.messages {
+  p.center {
+    margin-top: 1.25em;
+    margin-bottom: 0.5em;
+
+    span {
+      padding: 0.25em 0.5em;
+      background: $secondary;
+      color: #fff;
+      border-radius: 0.4em;
+    }
+  }
+
+  p.center.activated,
+  p.center:active {
+    span {
+      background: $secondary-active;
+    }
+  }
+
+  .system {
+    text-align: center;
+    font-size: 90%;
+
+    p {
+      background: transparent !important;
+      max-width: 90vw;
+      color: $primary;
+    }
+
+    span {
+      margin-top: -0.6em;
+      text-align: center !important;
+    }
+  }
+
+  ion-col {
+    padding-top: 1em;
+
+    img {
+      border-radius: 100%;
+      width: 3.5em;
+      height: 3.5em;
+      object-fit: cover;
+    }
+
+    img.active,
+    img:active {
+      opacity: 0.5;
+    }
+
+    p {
+      // min-width: auto;
+      max-width: 67vw;
+      margin-top: 0;
+      color: #fff;
+      padding: 0.5em;
+      border-radius: 0.5em;
+      margin-bottom: 0.5em;
+      background: $dark-active;
+      display: block;
+    }
+
+    span {
+      display: block;
+      text-align: left;
+      color: $gray;
+      font-size: 85%;
+      padding-left: 0.5em;
+    }
+  }
+
+  ion-col.sender {
+    p {
+      background: $primary;
+    }
+
+    span {
+      text-align: right;
+      padding-left: 0.5em;
+    }
+  }
+
+  div.right {
+    p {
+      display: inline-block !important;
+      float: right;
+    }
+
+    span {
+      float: right;
+      clear: right !important;
+      display: inline-block;
+    }
+  }
+
+  div.left {
+    float: left;
+    text-align: left;
+  }
+
+  div.left,
+  div.right {
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0.75em;
+    }
+  }
+}
+
+//Footer Bar for message.html and group.html
+ion-footer.footer {
+  background-image: url('../assets/images/background.png');
+  background-position: initial initial;
+  background-repeat: initial initial;
+}
+
+.bottom_bar {
+  background: rgba(0, 0, 0, 0.3) !important;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+
+  ion-input {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 110%;
+    border-radius: 0.75em;
+    color: #fff;
+  }
+
+  ion-fab button,
+  ion-fab button.activated {
+    background: transparent !important;
+  }
+
+  ion-fab button.activated ion-icon {
+    opacity: 0.5 !important;
+  }
+
+  ion-fab button ion-icon {
+    font-size: 2em !important;
+    color: $primary;
+  }
+}
+//insta
+.logo-nexti{
+  height: 35px;
+}
+
+html, body, ion-app, ion-content, ion-page, .nav-decor {
+   background-color: transparent !important;
+}
+
+.fa-icons-general {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+
+.ion-ios-fa-plus-square::before,
+.ion-ios-fa-plus-square-outline::before,
+.ion-md-fa-plus-square::before {
+  @extend .fa-icons-general;
+  content: "\f0fe";
+}
+
+
+.ion-ios-fa-refresh::before,
+.ion-ios-fa-refresh::before,
+.ion-md-fa-refresh::before {
+  @extend .fa-icons-general;
+  content: "\f021";
+}
+
+.ion-ios-fa-circle::before,
+.ion-ios-fa-circle::before,
+.ion-md-fa-circle::before {
+  @extend .fa-icons-general;
+  content: "\f111";
+}
+
+
+.ion-ios-fa-tumblr::before,
+.ion-ios-fa-tumblr::before,
+.ion-md-fa-tumblr::before {
+  @extend .fa-icons-general;
+  content: "\f173";
+}
+
+
+
+.bold {
+  font-weight: bold !important;
+}
+.card-complete {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  width: calc(100%)
+}
+
+
+ion-segment.publish {
+
+
+  background-color: #FAFAFA;
+
+  .segment-text {
+    text-transform: none;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+  }
+
+  .segment-button.segment-activated {
+    font-weight: bold;
+    border-color: #488aff;
+  }
+
+}
+
+
+ion-segment.clocking-view {
+
+  background-color: white;
+
+  .segment-text {
+    text-transform: none;
+    font-size: 1.6rem;
+    color: #9C9C9C;
+    text-transform: uppercase;
+  }
+
+  .segment-button.segment-activated {
+    font-weight: bold;
+    color: #2F2F2F;
+    border-color: #2F2F2F;;
+  }
+
+}
+
+
+ion-segment.toolbar-filter {
+
+  background: white;
+
+
+  .segment-text {
+    text-transform: none;
+    font-size: 1.6rem;
+    color: #313131;
+    text-transform: uppercase;
+  }
+
+  .segment-button.segment-activated {
+    font-weight: bold;
+    color: #2F2F2F;
+  }
+
+}

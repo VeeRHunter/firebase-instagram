@@ -1,0 +1,106 @@
+<ion-header>
+
+  <ion-toolbar class="toolbar-nexti">
+
+    <ion-buttons start>
+      <button ion-button icon-only large (click)="back()">
+        <ion-icon name="md-close" large></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Photo</ion-title>
+
+    <ion-buttons end>
+      <button color="primary" ion-button icon-only large (click)="goToPhoto()">
+        Next
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content>
+
+  <div [ngSwitch]="segment">
+
+    <div *ngSwitchCase="'photo'">
+
+      <!-- <div [style.height.px]="getHeight()" [style.top.px]="getPosition()" class="background-manage" ></div> -->
+
+      <ion-fab left middle small>
+        <button (click)="refresh()" ion-fab clear color="transparent">
+          <ion-icon name="fa-refresh" color="light"></ion-icon>
+        </button>
+      </ion-fab>
+
+
+      <ion-fab right="" middle small>
+        <button (click)="flash()" ion-fab clear color="transparent">
+          <ion-icon name="ios-flash-outline" *ngIf="flashMode == 'off'" color="light"></ion-icon>
+          <ion-icon name="ios-flash" *ngIf="flashMode == 'on'" color="light"></ion-icon>
+        </button>
+      </ion-fab>
+
+      <ion-fab center bottom large>
+        <button (click)="takePicture()" ion-fab color="gray" class="take-photo" >
+          <ion-icon name=""></ion-icon>
+        </button>
+      </ion-fab>
+
+    </div>
+
+    <div *ngSwitchCase="'video'">
+
+      <ion-fab left middle small>
+        <button (click)="refresh()" ion-fab clear color="transparent">
+          <ion-icon name="fa-refresh" color="light"></ion-icon>
+        </button>
+      </ion-fab>
+
+      <ion-fab center bottom large>
+        <button (click)="takePicture()" ion-fab color="gray" class="take-photo" [ngClass]="{'blink blink-infinite': recording}">
+          <ion-icon name="" ></ion-icon>
+        </button>
+      </ion-fab>
+
+    </div>
+
+    <div *ngSwitchCase="'gallery'" style="background-color: white;">
+
+      <img [src]="selectedPhoto | cdvphotolibrary" style="min-height: 307px;">
+
+
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let photo of images |  slice: 0:20" class="col-image" col-3>
+            <img [src]="photo.thumbnailUrl | cdvphotolibrary" (click)="changePhoto(photo)">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+
+  </div>
+
+
+</ion-content>
+
+
+<ion-footer no-border *ngIf="selectedPhoto" style="bottom: 0px">
+
+
+  <ion-segment class="clocking-view" [(ngModel)]="segment" mode="md">
+    <ion-segment-button value="gallery" class="segment-text" (click)="changeSegment('gallery')">
+      GALLERY
+    </ion-segment-button>
+    <ion-segment-button value="photo" class="segment-text" (click)="changeSegment('photo')">
+      PHOTO
+    </ion-segment-button>
+    <!-- <ion-segment-button value="video" class="segment-text" (click)="changeSegment('video')">
+      VIDEO
+    </ion-segment-button> -->
+
+  </ion-segment>
+</ion-footer>

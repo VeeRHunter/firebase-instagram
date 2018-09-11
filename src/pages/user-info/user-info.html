@@ -1,0 +1,161 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons>
+      <button ion-button tappable (click)="back()">Back</button>
+    </ion-buttons>
+    <ion-title *ngIf="user">{{user.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- User Info -->
+  <div *ngIf="user">
+    <ion-item no-border="" no-lines>
+
+      <ion-avatar item-left>
+        <img class="img-avatar" src="{{user.img}}">
+      </ion-avatar>
+
+
+      <ion-row text-center="">
+        <div col-4>
+          <h2 class="number">{{user.timeline? user.timeline.length : 0}}</h2>
+          <p class="label">posts</p>
+        </div>
+
+        <div col-4>
+          <h2 class="number">{{user.followers?user.followers.length: 0}}</h2>
+          <p class="label">followers</p>
+        </div>
+
+        <div col-4>
+          <h2 class="number">{{user.following? user.following.length: 0}}</h2>
+          <p class="label">following</p>
+        </div>
+
+      </ion-row>
+
+      <button (click)="follow(user); $event.stopPropagation();" *ngIf="getStatus(user) != 3" ion-button icon-left small primary
+        block>
+        <ion-icon name="add"></ion-icon>
+        Follow
+      </button>
+      <button (click)="unfollow(user); $event.stopPropagation();" *ngIf="getStatus(user) == 3" ion-button icon-left small primary
+        outline block>
+        <ion-icon name="remove"></ion-icon>
+        Unfollow
+      </button>
+
+      <ion-row text-center="">
+          <div col-4>
+             <button ion-button icon-only  round color="danger" class="circleBtn" (click) ="onBookmark()">
+                <ion-icon name="bookmark"></ion-icon>
+             </button>
+          </div>
+          <div col-4>
+              <button ion-button icon-only  round color="green" class="circleBtn" (click) ="onEdit()">
+                  <ion-icon name="create"></ion-icon>
+               </button>
+          </div>
+          <div col-4>
+              <button ion-button icon-only  round color="primary" class="circleBtn" (click) ="onNotification()">
+                  <ion-icon name="notifications"></ion-icon>
+               </button>
+          </div>
+
+      </ion-row>
+
+    </ion-item>
+
+    <div class="divider"></div>
+    <ion-item no-border="">
+
+      <h2 class="name">{{user.name}}</h2>
+      <p>{{user.description}}</p>
+    </ion-item>
+    <hr>
+    <ion-segment [(ngModel)]="icons" color="primary">
+      <ion-segment-button value="grid">
+        <ion-icon name="md-apps"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="list">
+        <ion-icon name="ios-list"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="camera">
+        <ion-icon name="camera"></ion-icon>
+      </ion-segment-button>
+
+    </ion-segment>
+
+    <div [ngSwitch]="icons">
+
+      <div *ngSwitchCase="'grid'">
+
+        <ion-grid>
+          <ion-row>
+            <ion-col *ngFor="let photo of timelineData" col-4 class="col-image" (press)="openOptions(photo.image)">
+              <img src={{photo.image}} (click)="viewPost(photo)">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+      </div>
+      <div *ngSwitchCase="'list'">
+
+        <ion-card *ngFor="let item of timelineData">
+          <ion-item>
+            <ion-avatar item-left tappable (click)="viewUser(item.postBy)">
+              <img src="{{item.avatar}}">
+            </ion-avatar>
+            <h2>{{item.name}}</h2>
+            <p>{{item.locationAddress}}</p>
+            <button ion-button outline item-end icon-only clear (click)="presentOptions($event, item)" class="settings">
+              <ion-icon name="md-more"></ion-icon>
+            </button>
+          </ion-item>
+          <!-- <img *ngIf="p.isType==2"   src="{{p.mapUrl}}" style="200px" (click)="openMap(p.mapData.lat,p.mapData.long)"> -->
+          <img src="{{item.image}}" style="height:320px" *ngIf="item.image" (click)="enlargeImage(item.image)">
+          <!--<img src="{{item.location}}" style="height:200px" *ngIf="item.location" (click)="openMap(item.lat,item.long)">-->
+          <ion-row text-center>
+            <ion-col>
+              <button ion-button icon-only clear large color="dark" (click)="likePost(item)" *ngIf="!item.isLike">
+                <ion-icon name="ios-heart"></ion-icon>
+              </button>
+              <button ion-button icon-only clear large color="danger" (click)="delikePost(item)" *ngIf="item.isLike">
+                <ion-icon name="ios-heart"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-only clear large color="dark" (click)="commentPost(item)" *ngIf="!item.isComment">
+                <ion-icon name="text"></ion-icon>
+              </button>
+              <button ion-button icon-only clear large color="gray" (click)="commentPost(item)" *ngIf="item.isComment">
+                <ion-icon name="text"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+          </ion-row>
+          <ion-card-content>
+            <span class="likes">
+              <ion-icon name="ios-heart" small></ion-icon>
+              {{item.likes}}{{item.likes > 1? ' likes': 'like'}}
+            </span>
+            <br/>
+            <p>{{item.postText}}</p>
+            <a (click)="commentPost(item)" color="dark">View all {{item.comments}} comments</a>
+            <p class="timeago">{{item.dateCreated | DateFormat}}</p>
+          </ion-card-content>
+
+        </ion-card>
+
+
+      </div>
+    </div>
+
+
+
+  </div>
+</ion-content>

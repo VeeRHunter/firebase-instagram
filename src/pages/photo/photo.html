@@ -1,0 +1,91 @@
+<ion-content no-bounce>
+
+
+  <div *ngIf="mode == 'camera'">
+
+
+    <ion-fab right top small >
+      <button ion-fab color="danger" (click)="back()">
+        <ion-icon name="md-arrow-forward"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-fab left top small >
+      <button ion-fab color="danger">
+        <ion-icon name="ios-settings"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-fab right bottom small >
+      <button (click)="refresh()" ion-fab clear color="light">
+        <ion-icon name="fa-refresh"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-fab center bottom large >
+      <button (click)="takePicture()" ion-fab clear color="light">
+        <ion-icon name=""></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
+
+
+  <div *ngIf="mode == 'photo'">
+    <ion-fab right bottom small>
+      <button ion-fab color="light" (click)="save()">
+        <ion-icon name="md-arrow-forward"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-fab left bottom small >
+      <button ion-fab color="danger" (click)="back()">
+        <ion-icon name="md-arrow-down"></ion-icon>
+        Save
+      </button>
+    </ion-fab>
+
+    <ion-fab left top small >
+      <button ion-fab color="danger" (click)="back()">
+        <ion-icon name=""></ion-icon>
+        CANCEL
+      </button>
+    </ion-fab>
+
+    <ion-fab right top small >
+      <button ion-fab color="danger" (click)="canvas.initModeBrush(); modeBrush()">
+        <ion-icon name="brush"></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
+
+  <div *ngIf="mode == 'brush'">
+    <ion-fab left top small >
+      <button ion-fab color="danger" (click)="back()">
+        <ion-icon name=""></ion-icon>
+         Undo
+      </button>
+    </ion-fab>
+
+    <ion-fab right="" top small >
+      <button ion-fab color="danger" (click)="done()" style="font-weight: bold">
+        <ion-icon name=""></ion-icon>
+        Done
+      </button>
+    </ion-fab>
+  </div>
+
+
+  <ion-slides class="slide-class" loop="false" slidesPerView="10" *ngIf="mode == 'brush'">
+    <ion-slide *ngFor="let colour of availableColours">
+      <button clear ion-button (click)="canvas.changeColour(colour)">
+        <ion-icon [style.color]="colour" name="fa-circle" class="image-icons"></ion-icon>
+      </button>
+    </ion-slide>
+
+  </ion-slides>
+  {{srcPhoto}}
+  <canvas-draw *ngIf="srcPhoto"  src="data:image/jpeg;base64,{{srcPhoto}}" #myCanvasDraw>
+  </canvas-draw>
+
+
+</ion-content>

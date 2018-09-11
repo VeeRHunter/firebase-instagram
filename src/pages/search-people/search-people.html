@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">   
+    <ion-title>Search People</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- fab button  fab fab-bottom fab-right-->
+  <button  ion-button color="secondary" style="z-index:100;position: fixed;left: 80%;top:80%;width: 50px;height: 50px;border-radius: 50%;" (click)="addProfile();">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+    <!-- end -->
+  <!-- No other users to send friend request right now. -->
+  <div class="empty-list" *ngIf="accounts && (accounts.length == 0 || (accounts.length == excludedIds.length))">
+    <h1><ion-icon name="md-search"></ion-icon></h1>
+    <p>Uh-oh! Sorry but we can't find other users right now. Try again later.</p>
+    <button ion-button icon-left tappable (click)="back()"><ion-icon name="md-arrow-round-back"></ion-icon>Go Back</button>
+  </div>
+  <!-- Show other users excluding yourself, and friends with the help of searchFilter pipe. -->
+  <ion-list class="avatar-list" *ngIf="accounts && accounts.length > 0">
+    <ion-searchbar *ngIf="accounts.length != excludedIds.length" [(ngModel)]="searchUser" placeholder="Search for name or username" showCancelButton="true" cancelButtonText="Done"></ion-searchbar>
+    <ion-item *ngFor="let account of accounts | searchFilter: [excludedIds, searchUser]" no-lines tappable (click)="viewUser(account.$key)">      
+      <ion-avatar item-left>
+        <img src="{{account.img}}">
+      </ion-avatar>
+      <h2>{{account.name}}</h2>
+      <p>@{{account.username}}</p>
+      <button (click)="follow(account); $event.stopPropagation();" *ngIf="getStatus(account) != 3" ion-button icon-left small primary>
+        <ion-icon name="add"></ion-icon>
+        Follow
+      </button>
+      <button (click)="unfollow(account); $event.stopPropagation();" *ngIf="getStatus(account) == 3" ion-button icon-left small primary outline>
+          <ion-icon name="remove"></ion-icon>
+          Unfollow
+      </button>
+      <div style="float: right;">
+          <button ion-button icon-only  clear round color="danger" class="circleBtn" (click) ="onBookmark(account.$key);$event.stopPropagation();">
+            <ion-icon name="bookmark"></ion-icon>
+          </button>
+          <button ion-button icon-only  clear round color="green" class="circleBtn" (click) ="onEdit(account.$key);$event.stopPropagation();">
+              <ion-icon name="create"></ion-icon>
+          </button>
+          <button ion-button icon-only  clear round color="primary" class="circleBtn" (click) ="onNotification(account.$key);$event.stopPropagation();">
+              <ion-icon name="notifications"></ion-icon>
+          </button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

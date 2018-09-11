@@ -1,0 +1,100 @@
+page-manage-photo {
+
+
+  .scroll-content {
+    background-color: transparent !important;
+  }
+
+  background-color: $transparent !important;
+
+  ion-content{
+    background-color: $transparent !important;
+  }
+
+  .background-manage{
+    background-color: $transparent !important;
+    position: relative;
+  }
+
+  .fab-md-danger{
+    background-color: $transparent !important;
+    box-shadow: none;
+  }
+
+  .take-photo{
+    background-color: $dark !important;
+    -webkit-box-shadow: 0px 0px 0px 17px rgba(219,219,219,0.5) !important;
+    -moz-box-shadow: 0px 0px 0px 17px rgba(219,219,219,0.5) !important;
+    box-shadow: 0px 0px 0px 17px rgba(219,219,219,0.5) !important;
+    margin-bottom: 70px !important;
+  }
+
+  .col-image{
+    padding: 1px !important;
+  }
+  
+
+  .blink {
+    background-color: $red !important;    
+    -webkit-animation-name: blink;
+       -moz-animation-name: blink;
+         -o-animation-name: blink;
+            animation-name: blink;
+    -webktit-animation-timing-function: linear;
+        -moz-animation-timing-function: linear;
+          -o-animation-timing-function: linear;
+             animation-timing-function: linear;
+    -webkit-animation-duration: 1s;
+       -moz-animation-duration: 1s;
+         -o-animation-duration: 1s;
+            animation-duration: 1s;
+  }
+  
+  .blink-infinite {
+    -webkit-animation-iteration-count: infinite;
+       -moz-animation-iteration-count: infinite;
+         -o-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+  }
+  
+  .blink-5 {
+    -webkit-animation-iteration-count: 5;
+       -moz-animation-iteration-count: 5;
+         -o-animation-iteration-count: 5;
+            animation-iteration-count: 5;
+  }
+  
+  .blink-furiously {
+    -webkit-animation-duration: 0.3s;
+       -moz-animation-duration: 0.3s;
+         -o-animation-duration: 0.3s;
+            animation-duration: 0.3s;
+  }
+  
+  @-webkit-keyframes blink {
+    50% {
+      
+      opacity: 0;
+    }
+  }
+  @-moz-keyframes blink {
+    50% {
+      
+      opacity: 0;
+    }
+  }
+  @-o-keyframes blink {
+    50% {
+      
+      opacity: 0;
+    }
+  }
+  @keyframes blink {
+    50% {
+      
+      opacity: 0;
+    }
+  }
+
+}
+

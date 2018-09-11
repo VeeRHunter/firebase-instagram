@@ -1,0 +1,96 @@
+<ion-header>
+
+  <ion-toolbar color="light" >
+    <ion-buttons start left>
+      <ion-select [(ngModel)]="date"  >
+        <ion-icon name="md-arrow-back" large></ion-icon>
+      </ion-select>
+    </ion-buttons>
+
+    <ion-title text-center>Share to</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="primary" (click)="share()">
+        Share
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-segment class="publish" [(ngModel)]="segment" mode="md"  >
+    <ion-segment-button value="followers" class="segment-text" >
+      FOLLOWERS
+    </ion-segment-button>
+    <ion-segment-button value="direct" class="segment-text" >
+      DIRECT
+    </ion-segment-button>
+  </ion-segment>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list class="list-exit-help">
+
+  <ion-item >
+    <ion-avatar item-left>
+      <img class="img-no-round" [src]='sanitizer.bypassSecurityTrustResourceUrl(image)'>
+    </ion-avatar>
+
+    <ion-textarea fz-elastic placeholder="Write a caption..." [(ngModel)]="postText"></ion-textarea>
+
+  </ion-item>
+
+
+    <!-- <ion-item>
+      <ion-icon name="pin" item-left></ion-icon>
+     <span class="description">Add Location</span>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="ios-pricetags" item-left></ion-icon>
+      <span class="description">Tag People</span>
+
+    </ion-item> -->
+
+  </ion-list>
+
+
+
+  <!-- <ion-grid padding="">
+    <h4 class="title-share">SHARE</h4>
+
+    <ion-row class="border-top">
+
+      <ion-col col-6 class="border-right">
+        <ion-icon class="description-logo-icon" name="logo-facebook" item-left></ion-icon>
+        <span class="description-logo">Facebook</span>
+
+      </ion-col>
+
+      <ion-col col-6 >
+        <ion-icon class="description-logo-icon" name="logo-twitter" item-left></ion-icon>
+        <span class="description-logo ">Twitter</span>
+      </ion-col>
+
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col col-6 class="border-right">
+        <ion-icon class="description-logo-icon" name="fa-tumblr" item-left></ion-icon>
+        <span class="description-logo">Thumblr</span>
+      </ion-col>
+
+    </ion-row>
+
+
+  </ion-grid>
+
+  <div text-center="">
+    Advanced Settings
+  </div> -->
+
+
+
+
+</ion-content>

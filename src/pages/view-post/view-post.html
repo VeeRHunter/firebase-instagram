@@ -1,0 +1,63 @@
+<!--
+  Generated template for the ViewPostPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <ion-card *ngIf="item">
+    <ion-item>
+      <ion-avatar item-left tappable (click)="viewUser(item.postBy)">
+        <img src="{{item.avatar}}">
+      </ion-avatar>
+      <h2>{{item.name}}</h2>
+      <p>{{item.locationAddress}}</p>
+    </ion-item>
+
+
+    <img src="{{item.image}}" style="height:320px" *ngIf="item.image" (click)="enlargeImage(item.image)">
+    
+    <ion-row text-center>
+      <ion-col>
+        <button ion-button icon-only clear large color="dark" (click)="likePost(item)" *ngIf="!item.isLike">
+          <ion-icon name="ios-heart"></ion-icon>
+        </button>
+        <button ion-button icon-only clear large color="danger" (click)="delikePost(item)" *ngIf="item.isLike">
+          <ion-icon name="ios-heart"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-only clear large color="dark" (click)="commentPost(item)" *ngIf="!item.isComment">
+          <ion-icon name="text"></ion-icon>
+        </button>
+        <button ion-button icon-only clear large color="gray" (click)="commentPost(item)" *ngIf="item.isComment">
+          <ion-icon name="text"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <!-- [ngClass]="(isFavorite(item))?'favorite':''" -->
+        <button ion-button outline item-end icon-only clear (click)="bookmarkPost(item)" [ngClass]="(isFavorite(item))?'favorite':''">
+          <ion-icon name="md-bookmark"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-card-content>
+      <div [innerHTML]="item.postText"></div>
+      <a (click)="commentPost(item)" color="dark">View all {{item.comments}} comments</a>
+      <p class="timeago">{{item.dateCreated | DateFormat}}</p>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

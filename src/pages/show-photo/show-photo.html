@@ -1,0 +1,132 @@
+<!--
+  Generated template for the ShowPhoto page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar class="toolbar-nexti" *ngIf="actualView == 'default' || actualView == 'edit'">
+    <ion-buttons start>
+      <button ion-button icon-only large (click)="back()">
+        <ion-icon name="md-arrow-back" large></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title text-center>
+
+      <ion-buttons center>
+        <button ion-button icon-only large (click)="changeView('brightness', 'lux')">
+          <ion-icon name="md-sunny"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-title>
+
+    <ion-buttons end>
+      <button *ngIf="!story" ion-button color="primary" large (click)="next()">
+        Next
+      </button>
+      <button *ngIf="story" ion-button color="primary" large (click)="next()">
+        Share
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="isCustomFilter()">
+    <ion-title text-left text-capitalize="">{{title}}</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content style="background-color: #FAFAFA;">
+
+  <div id="imageFilter3">
+    <img [src]="src | cdvphotolibrary" [class]="filter.class" (press)="press($event)" (touchend)="end()" id="imageFilter"
+         #imageFilter>  </div>
+
+  <canvas id="imageFilter2" hidden="true"></canvas>
+
+
+  <ion-slides class="image-slider" loop="false" slidesPerView="3" *ngIf="actualView == 'default'">
+    <ion-slide *ngFor="let filter2 of filters  trackBy: trackByFunction" (click)="changeFilter(filter2)">
+      <div class="title-slider" [ngClass]="{'active' : filter2.name == filter.name }">{{filter2.name}}</div>
+
+      <img [src]="src | cdvphotolibrary"class="thumb-img {{filter2.class}}"/>
+
+    </ion-slide>
+  </ion-slides>
+
+
+  <ion-slides class="image-slider" loop="false" slidesPerView="3" *ngIf="actualView == 'edit'">
+    <ion-slide *ngFor="let customFilter of customFilters  trackBy: trackByFunction" (click)="changeFilter(customFilter)"
+               text-center="">
+      <div class="title-slider active">{{customFilter.name}}</div>
+
+      <div class="border-filter" (click)="changeView(customFilter.name, customFilter.name)">
+        <ion-icon class="icon-filter" [name]="customFilter.icon"></ion-icon>
+      </div>
+
+      <div *ngIf="isFilterUsed(customFilter.filter)" class="dot">.</div>
+
+    </ion-slide>
+  </ion-slides>
+
+
+  <ion-item *ngIf="actualView == 'brightness'">
+    <ion-label>{{brightness}}</ion-label>
+    <ion-range min="-100" max="100" color="dark" brightness type="brightness" [(ngModel)]="brightness"
+               imageId="imageFilter">
+    </ion-range>
+  </ion-item>
+
+
+  <ion-item *ngIf="actualView == 'contrast'">
+    <ion-label>{{contrast}}</ion-label>
+    <ion-range min="-100" max="100" color="dark" brightness type="contrast" [(ngModel)]="contrast"
+               imageId="imageFilter">
+    </ion-range>
+  </ion-item>
+
+
+  <ion-item *ngIf="actualView == 'saturation'">
+    <ion-label>{{saturation}}</ion-label>
+    <ion-range min="-100" max="100" color="dark" brightness type="saturate" [(ngModel)]="saturation"
+               imageId="imageFilter">
+    </ion-range>
+  </ion-item>
+
+  <ion-item *ngIf="actualView == 'fade'">
+    <ion-label>{{fade}}</ion-label>
+    <ion-range min="-100" max="100" color="dark" brightness type="opacity" [(ngModel)]="fade" imageId="imageFilter">
+    </ion-range>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer *ngIf="actualView == 'default' || actualView == 'edit'" no-border>
+
+  <ion-segment class="clocking-view" [(ngModel)]="mode" mode="md">
+    <ion-segment-button value="filter" class="segment-text" (click)="changeSegment('default')">
+      FILTER
+    </ion-segment-button>
+    <ion-segment-button value="edit" class="segment-text" (click)="changeSegment('edit')">
+      EDIT
+    </ion-segment-button>
+
+  </ion-segment>
+</ion-footer>
+
+
+<ion-footer *ngIf="isCustomFilter()" no-border>
+
+  <ion-segment class="toolbar-filter" mode="md">
+    <ion-segment-button value="filter" class="segment-text" (click)="cancel()">
+      CANCEL
+    </ion-segment-button>
+    <ion-segment-button value="edit" class="segment-text" (click)="done()">
+      DONE
+    </ion-segment-button>
+  </ion-segment>
+</ion-footer>
+

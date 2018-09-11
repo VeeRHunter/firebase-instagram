@@ -1,0 +1,209 @@
+
+page-login {
+    
+
+  .scroll-content {
+    background : #E12F67; /* Old browsers */
+  background: -webkit-gradient(linear, 333 0, 0 337, from(#8043af), color-stop(0.029, #8442aa), color-stop(0.029, #8740a9), color-stop(0.042, #8842a8), color-stop(0.059, #8d3fa7), color-stop(0.067, #8d41a4), color-stop(0.164, #9d3d9c), color-stop(0.164, #9f3c9a), color-stop(0.202, #a63b96), color-stop(0.202, #a73a97), color-stop(0.23, #a83b96), color-stop(0.23, #aa3a92), color-stop(0.253, #ac3990), color-stop(0.312, #b63a8b), color-stop(0.35, #b93a88), color-stop(0.35, #bb3986), color-stop(0.374, #bc3986), color-stop(0.374, #be3884), color-stop(0.397, #c03a83), color-stop(0.403, #c13c83), color-stop(0.412, #c4397f), color-stop(0.443, #c63b7a), color-stop(0.469, #ca3d75), color-stop(0.475, #cb3c75), color-stop(0.494, #ca3e74), color-stop(0.494, #cc3d74), color-stop(0.503, #ce3e75), color-stop(0.503, #cf3d74), color-stop(0.591, #d84466), color-stop(0.591, #d94367), color-stop(0.904, #ef6744), color-stop(0.951, #f26a43), color-stop(0.951, #f26c42), color-stop(0.978, #f3703f), color-stop(0.978, #f46f40), color-stop(0.997, #f57041), color-stop(0.997, #f47141), to(#f47141));
+  background: -webkit-linear-gradient(225.34206029135854deg, #8043af, #8442aa 2.9%, #8740a9 2.9%, #8842a8 4.2%, #8d3fa7 5.9%, #8d41a4 6.7%, #9d3d9c 16.4%, #9f3c9a 16.4%, #a63b96 20.2%, #a73a97 20.2%, #a83b96 23%, #aa3a92 23%, #ac3990 25.3%, #b63a8b 31.2%, #b93a88 35%, #bb3986 35%, #bc3986 37.4%, #be3884 37.4%, #c03a83 39.7%, #c13c83 40.3%, #c4397f 41.2%, #c63b7a 44.3%, #ca3d75 46.9%, #cb3c75 47.5%, #ca3e74 49.4%, #cc3d74 49.4%, #ce3e75 50.3%, #cf3d74 50.3%, #d84466 59.1%, #d94367 59.1%, #ef6744 90.4%, #f26a43 95.1%, #f26c42 95.1%, #f3703f 97.8%, #f46f40 97.8%, #f57041 99.7%, #f47141 99.7%, #f47141);
+  background: -moz-linear-gradient(225.34206029135854deg, #8043af, #8442aa 2.9%, #8740a9 2.9%, #8842a8 4.2%, #8d3fa7 5.9%, #8d41a4 6.7%, #9d3d9c 16.4%, #9f3c9a 16.4%, #a63b96 20.2%, #a73a97 20.2%, #a83b96 23%, #aa3a92 23%, #ac3990 25.3%, #b63a8b 31.2%, #b93a88 35%, #bb3986 35%, #bc3986 37.4%, #be3884 37.4%, #c03a83 39.7%, #c13c83 40.3%, #c4397f 41.2%, #c63b7a 44.3%, #ca3d75 46.9%, #cb3c75 47.5%, #ca3e74 49.4%, #cc3d74 49.4%, #ce3e75 50.3%, #cf3d74 50.3%, #d84466 59.1%, #d94367 59.1%, #ef6744 90.4%, #f26a43 95.1%, #f26c42 95.1%, #f3703f 97.8%, #f46f40 97.8%, #f57041 99.7%, #f47141 99.7%, #f47141);
+  background: -o-linear-gradient(225.34206029135854deg, #8043af, #8442aa 2.9%, #8740a9 2.9%, #8842a8 4.2%, #8d3fa7 5.9%, #8d41a4 6.7%, #9d3d9c 16.4%, #9f3c9a 16.4%, #a63b96 20.2%, #a73a97 20.2%, #a83b96 23%, #aa3a92 23%, #ac3990 25.3%, #b63a8b 31.2%, #b93a88 35%, #bb3986 35%, #bc3986 37.4%, #be3884 37.4%, #c03a83 39.7%, #c13c83 40.3%, #c4397f 41.2%, #c63b7a 44.3%, #ca3d75 46.9%, #cb3c75 47.5%, #ca3e74 49.4%, #cc3d74 49.4%, #ce3e75 50.3%, #cf3d74 50.3%, #d84466 59.1%, #d94367 59.1%, #ef6744 90.4%, #f26a43 95.1%, #f26c42 95.1%, #f3703f 97.8%, #f46f40 97.8%, #f57041 99.7%, #f47141 99.7%, #f47141);
+  background: linear-gradient(224.65793970864146deg, #8043af, #8442aa 2.9%, #8740a9 2.9%, #8842a8 4.2%, #8d3fa7 5.9%, #8d41a4 6.7%, #9d3d9c 16.4%, #9f3c9a 16.4%, #a63b96 20.2%, #a73a97 20.2%, #a83b96 23%, #aa3a92 23%, #ac3990 25.3%, #b63a8b 31.2%, #b93a88 35%, #bb3986 35%, #bc3986 37.4%, #be3884 37.4%, #c03a83 39.7%, #c13c83 40.3%, #c4397f 41.2%, #c63b7a 44.3%, #ca3d75 46.9%, #cb3c75 47.5%, #ca3e74 49.4%, #cc3d74 49.4%, #ce3e75 50.3%, #cf3d74 50.3%, #d84466 59.1%, #d94367 59.1%, #ef6744 90.4%, #f26a43 95.1%, #f26c42 95.1%, #f3703f 97.8%, #f46f40 97.8%, #f57041 99.7%, #f47141 99.7%, #f47141);
+
+    // background: #d6249f;
+    // background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  }
+
+  .form {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .form .item {
+    margin-bottom: 8px;
+    border-radius: 5px;     
+    background-color: rgba(214, 214, 214, 0.4); 
+    color: #f4f4f4;
+
+  }
+
+  .form .item p {    
+    color: #f4f4f4 !important;
+    
+    //background-color: rgba(214, 214, 214, 0.4);
+  }
+  .text-input::-moz-placeholder {
+    color: #f4f4f4 ;
+  }
+  
+  .text-input:-ms-input-placeholder {
+    color: #f4f4f4 ;
+  }
+  
+  .text-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: #f4f4f4 ;
+  }
+
+  .phone .item {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  ion-select {
+    max-width: 90%;
+  }
+  
+
+
+  
+   
+.bar.bar-stable {
+  background-color: #ffffff;
+  color: #ff6e6e;
+}
+.bar.bar-stable .title {
+  background-color: #7379a3;
+  color: #8f0d0d;
+}
+
+ 
+  
+  div {
+
+   
+    text-align: center;
+
+    .top {
+      height: 25vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 20vw;
+      }
+    }
+
+    .bottom {
+      height: 60vh;
+
+      .buttons {
+        height: 100%;
+        display: flow-root;
+        align-items: center;
+        justify-content: center;
+      }
+
+      p {
+        color: #fff;
+        font-size: 1.1em;
+      }
+
+      p.activated,
+      p:active {
+        color: $primary;
+      }
+
+      button {
+        width: 70vw;
+        margin-top: 0.5em;
+      }
+
+      button.facebook {
+        background: $facebook;
+      }
+
+      button.facebook.activated,
+      button.facebook:active {
+        background: $facebook-active;
+      }
+
+      button.google {
+        background: $google;
+      }
+
+      button.google.activated,
+      button.google:active {
+        background: $google-active;
+      }
+
+      button.secondary {
+        background: $secondary;
+      }
+
+      button.secondary.activated,
+      button.secondary:active {
+        background: $secondary-active;
+      }
+
+      button.dark {
+        background:  #041242;;
+      }
+
+      button.login {
+        background:  rgb(24, 94, 94);;
+      }
+
+      button.reset{
+        background:  rgb(24, 94, 94);;
+      }
+
+
+      button.dark.activated,
+      button.dark:active {
+        background: $dark-active;
+      }
+
+      .form {
+        background: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 100%;
+
+        p {
+          width: 30vw;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+
+        
+        ion-list {
+          padding: 0;
+          margin: 0 0 1.5em;
+
+
+        
+          ion-item {
+            //background: rgb(0, 182, 182);
+            width: 85%;
+            margin: 0 auto;
+            color: #f4f4f4;
+            margin-bottom: 8px;
+
+       
+            ion-label {
+              text-align: left;
+              width: 25vw;
+            }
+
+            ion-input {
+              color: rgb(255, 255, 255);
+            }
+          }
+        }
+
+        button.clear {
+          margin: 0;
+          width: auto !important;
+          background: transparent !important;
+        }
+
+        button.clear.activated {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+

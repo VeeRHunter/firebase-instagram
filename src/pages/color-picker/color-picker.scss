@@ -1,0 +1,19 @@
+page-color-picker {
+    .vertical-align-content > *
+    {
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+        padding-top: 40%
+    }
+    .circlePicker {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+    }
+    .pickerRow {
+        height: 70px;
+        margin-left: 20px;
+    }
+    
+}
