@@ -157,7 +157,7 @@ export class UserInfoPage {
   locationAddress(location, success) {
 
     this.nativeGeocoder.reverseGeocode(location.lat, location.long)
-      .then((result: NativeGeocoderReverseResult) => {
+      .then((result) => {
         console.log(JSON.stringify(result));
         success(result);
       }).catch((error: any) => console.log(error));

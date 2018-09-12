@@ -64,14 +64,15 @@
         <ion-list>
           <ion-item no-lines>
             <ion-label>Name</ion-label>
-            <ion-input [(ngModel)]="name" type="text"  placeholder="set your Name"></ion-input>
+            <ion-input [(ngModel)]="name" type="text" placeholder="set your Name"></ion-input>
           </ion-item>
           <ion-item no-lines>
             <ion-label>User Name</ion-label>
-            <ion-input [(ngModel)]="username" type="text"  placeholder="set your User Name"></ion-input>
+            <ion-input [(ngModel)]="username" type="text" placeholder="set your User Name"></ion-input>
           </ion-item>
         </ion-list>
-        <button [disabled]="username ==='' || name ===''" ion-button icon-right color="light" tappable (click)="step = step + 1" outline>
+        <button [disabled]="username ==='' || name ===''" ion-button icon-right color="light" tappable (click)="step = step + 1"
+          outline>
           Next
           <ion-icon name="arrow-forward"></ion-icon>
         </button>

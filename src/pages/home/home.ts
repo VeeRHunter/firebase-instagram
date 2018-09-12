@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, NavParams, App, PopoverController,ModalController } from 'ionic-angular';
+import { NavController, AlertController, NavParams, App, PopoverController, ModalController } from 'ionic-angular';
 import { LogoutProvider } from '../../providers/logout';
 import { LoadingProvider } from '../../providers/loading';
 import { AlertProvider } from '../../providers/alert';
@@ -42,17 +42,17 @@ export class HomePage {
   // Change name, profile pic, email, and password
   // The user can also opt for the deletion of their account, and finally logout.
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public app: App,
-              public logoutProvider: LogoutProvider,
-              public loadingProvider: LoadingProvider,
-              public imageProvider: ImageProvider,
-              public angularDb: AngularFireDatabase,
-              public alertProvider: AlertProvider,
-              public dataProvider: DataProvider,
-              public camera: Camera,
-              private nativeGeocoder: NativeGeocoder,
-              private popoverCtrl : PopoverController,
-              public modalCtrl: ModalController,
-              public firebaseProvider: FirebaseProvider) {
+    public logoutProvider: LogoutProvider,
+    public loadingProvider: LoadingProvider,
+    public imageProvider: ImageProvider,
+    public angularDb: AngularFireDatabase,
+    public alertProvider: AlertProvider,
+    public dataProvider: DataProvider,
+    public camera: Camera,
+    private nativeGeocoder: NativeGeocoder,
+    private popoverCtrl: PopoverController,
+    public modalCtrl: ModalController,
+    public firebaseProvider: FirebaseProvider) {
     this.logoutProvider.setApp(this.app);
   }
 
@@ -63,21 +63,21 @@ export class HomePage {
     this.dataProvider.getCurrentUser().subscribe((user) => {
       this.loadingProvider.hide();
       this.user = <any>user;
-      console.log('User data',user);
-      
+      console.log('User data', user);
+
     });
 
     //Getting Current User
     this.dataProvider.getTimelines().subscribe((timeline) => {
-      this.timelineData = [];            
-      console.log('personal',timeline);
-      
+      this.timelineData = [];
+      console.log('personal', timeline);
+
       if (timeline) {
         timeline.forEach(data => {
           this.dataProvider.getTimeline(data.$value).subscribe((post) => {
-            
+
             console.log(data);
-            
+
 
             let timeline = post;
             let tempData = <any>{};
@@ -233,8 +233,8 @@ export class HomePage {
   }
 
 
-  presentOptions(event, post){
-    let popover = this.popoverCtrl.create(PostOptionsComponent,{key: post.$key, value: post.$value});
+  presentOptions(event, post) {
+    let popover = this.popoverCtrl.create(PostOptionsComponent, { key: post.$key, value: post.$value });
     popover.present({
       ev: event
     });
@@ -255,7 +255,7 @@ export class HomePage {
           text: 'Choose from Gallery',
           handler: () => {
             // Call imageProvider to process, upload, and update user photo.
-            console.log('Gallery');            
+            console.log('Gallery');
             this.imageProvider.setProfilePhoto(this.user, this.camera.PictureSourceType.PHOTOLIBRARY);
           }
         },
@@ -422,7 +422,7 @@ export class HomePage {
   locationAddress(location, success) {
 
     this.nativeGeocoder.reverseGeocode(location.lat, location.long)
-      .then((result: NativeGeocoderReverseResult) => {
+      .then((result) => {
         console.log(JSON.stringify(result));
         success(result);
       }).catch((error: any) => console.log(error));
@@ -453,9 +453,9 @@ export class HomePage {
   }
 
   //view post when square img
-  viewPost(post){
+  viewPost(post) {
     this.navCtrl.push(ViewPostPage, { post: post });
   }
 
-  
+
 }

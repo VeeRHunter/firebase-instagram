@@ -157,10 +157,12 @@ export class TimelinePage {
   load() {
     //get timelines   
 
+    // console.log("load Timeline");
+
     this.dataProvider.getCurrentUser().subscribe((user) => {
       this.timelineData = [];
       var timelineIds = [firebase.auth().currentUser.uid];
-      console.log('timelineids', timelineIds);
+      // console.log('timelineids', timelineIds);
 
       this.user = user;
       if (this.user.following && timelineIds) {
@@ -169,14 +171,14 @@ export class TimelinePage {
         if (this.user.following)
           timelineIds = [...this.user.following];
       }
-      console.log('Ids', timelineIds);
+      // console.log('Ids', timelineIds);
       if (timelineIds) {
         this.timelineData = [];
         this.loadingProvider.show();
         timelineIds.forEach(userId => {
 
           this.dataProvider.getInterests(userId).subscribe((data) => {
-            console.log('POSTLIST', data);
+            // console.log('POSTLIST', data);
             var timelineList = data;
             if (timelineList) {
               timelineList.forEach(postId => {
@@ -185,7 +187,7 @@ export class TimelinePage {
                   // this.timelineData = [];
 
                   this.loadingProvider.hide();
-                  console.log('POST', post);
+                  // console.log('POST', post);
 
 
                   let timeline = post;
@@ -205,7 +207,7 @@ export class TimelinePage {
                     tempData.long = tempLocaion.long;
                     this.locationAddress(tempLocaion, (address: any) => {
                       tempData.locationAddress = address.locality + ", " + address.countryCode;
-                      console.log(tempData.locationAddress);
+                      // console.log(tempData.locationAddress);
                     });
                   }
 
@@ -228,7 +230,7 @@ export class TimelinePage {
 
                   //  ===== check commnets
                   this.dataProvider.getComments(tempData.$key).subscribe((comments) => {
-                    // console.log("====comm",comments)
+                    // // console.log("====comm",comments)
                     tempData.comments = comments.length;
                     // Check post like or not
 
@@ -245,6 +247,7 @@ export class TimelinePage {
 
                   });
 
+                  console.log("tempData");
                   console.log(tempData);
 
                   tempData.postText = this.createHashtag(tempData.postText);
@@ -260,20 +263,20 @@ export class TimelinePage {
                   //   hash.addEventListener('click', this.searchByHashTag.bind(this));
 
                   if (this.elmRef.nativeElement.querySelector('hashtagevt')) {
-                    console.log('HASH', this.elmRef.nativeElement.querySelector('hashtagevt'))
+                    // console.log('HASH', this.elmRef.nativeElement.querySelector('hashtagevt'))
                     this.elmRef.nativeElement.querySelector('hashtagevt').addEventListener('click', alert(this));
                   }
 
                   // this.timelineData.unshift(tempData);
-                  // console.log(this.timelineData.length);                  
+                  // // console.log(this.timelineData.length);                  
                   // if (this.timelineData.length > 1)
                   //   this.timelineData.splice(this.timelineData.length -1 , 1);
                   if (this.timelineData) {
                     this.timelineData.sort(function (a, b) {
                       var d1 = new Date(a.dateCreated);
                       var d2 = new Date(b.dateCreated);
-                      console.log('d1', d1);
-                      console.log('d2', d2);
+                      // console.log('d1', d1);
+                      // console.log('d2', d2);
 
                       return (d1 > d2) ? -1 : ((d2 > d1) ? 1 : 0);
                     });
@@ -299,12 +302,14 @@ export class TimelinePage {
   ionViewWillEnter() {
 
 
+    // console.log("ionViewWillEnter Timeline");
+
     this.angularDb.list('story').subscribe((stories) => {
-      console.log('destroy');
+      // console.log('destroy');
       this.myElement = null;
       this.zukeModal = null;
       this.storyList = null;
-      console.log('create');
+      // console.log('create');
 
       this.myElement = (<HTMLDivElement>document.getElementById("stories"));
 
@@ -321,7 +326,7 @@ export class TimelinePage {
 
 
       let feeds = [];
-      console.log('Story List', stories);
+      // console.log('Story List', stories);
       stories.forEach(story => {
         let feed = {
           id: story.$key,
@@ -332,11 +337,11 @@ export class TimelinePage {
           items: []
         }
 
-        console.log('building feed', feed);
+        // console.log('building feed', feed);
 
         story.items.forEach((item, index) => {
           const objItem = { id: index, ...item };
-          console.log('Building items', objItem);
+          // console.log('Building items', objItem);
           feed.items.push(objItem);
         })
         feeds.unshift(feed);
@@ -351,14 +356,14 @@ export class TimelinePage {
         cubeEffect: this.skins[this.skin]['cubeEffect'],
         localStorage: true,
         stories: feeds
-      });   
+      });
 
 
 
 
       this.loadingProvider.hide();
       // this.feeds = stories;
-      console.log('Stories OBJ', feeds);
+      // console.log('Stories OBJ', feeds);
 
     });
 
@@ -369,6 +374,7 @@ export class TimelinePage {
     this.loadingProvider.hide();
   }
   ionViewDidEnter() {
+    // console.log("ionViewDidEnter Timeline");
     // let elem = <HTMLElement>document.querySelector(".tabbar");
     // if (elem != null) {
     //   elem.style.display = 'flex';
@@ -378,6 +384,7 @@ export class TimelinePage {
   ionViewDidLoad() {
 
     //conversation count
+    // console.log("ionViewDidLoad Timeline");
     this.dataProvider.getConversations().subscribe((conversationsInfo) => {
       this.unreadMessagesCount = null;
       this.conversationsInfo = null;
@@ -401,7 +408,8 @@ export class TimelinePage {
     this.createUserData();
     this.dataProvider.getCurrentUser().subscribe((user) => {
       this.user = <any>user;
-      console.log(this.user)
+      // console.log("this.user");
+      // console.log(this.user);
     });
     this.tabService.show();
 
@@ -422,7 +430,8 @@ export class TimelinePage {
         if (!account.val()) {
           this.loadingProvider.show();
           let user = firebase.auth().currentUser;
-          console.log(user);
+          // console.log("user");
+          // console.log(user);
           //debugger
 
           var userId, name, provider, img, email;
@@ -465,16 +474,16 @@ export class TimelinePage {
 
           // Set default description.
           let description = "Hello! I am a new facebookclone user.";
-          console.log({
-            userId: userId,
-            name: name,
-            username: username,
-            provider: provider,
-            img: img,
-            email: email,
-            description: description,
-            dateCreated: new Date().toString()
-          });
+          // console.log({
+          //   userId: userId,
+          //   name: name,
+          //   username: username,
+          //   provider: provider,
+          //   img: img,
+          //   email: email,
+          //   description: description,
+          //   dateCreated: new Date().toString()
+          // });
           debugger
 
           // Insert data on our database using AngularFire.
@@ -501,8 +510,8 @@ export class TimelinePage {
     } else {
       var index = -1;
       for (var i = 0; i < this.timelineData.length; i++) {
-        console.log('addorupdate1', this.timelineData[i]);
-        console.log('addorupdate2', timeline);
+        // console.log('addorupdate1', this.timelineData[i]);
+        // console.log('addorupdate2', timeline);
 
         if (this.timelineData[i].$key === timeline.$key) {
           index = i;
@@ -524,18 +533,18 @@ export class TimelinePage {
 
     let res = str.split(/[ ]/);
     // res.forEach(function (val) {
-    //   console.log(val.substring(0, 1));
+    //   // console.log(val.substring(0, 1));
     //   if (val.substring(0, 1) === '#') {
     //     let index = res.indexOf(val);
     //     res[res.indexOf(val)] = ' <a  id="hashtagevt" class="hashtagevt">' + val + ' </a>';
-    //     console.log(res[index]);
+    //     // console.log(res[index]);
     //   }
     // });
     return res;//this.sanitizer.bypassSecurityTrustHtml(res.join().replace(/,/g, " "));
   }
 
   searchByHashTag(val) {
-    console.log('go search');
+    // console.log('go search');
 
     this.navCtrl.push(InterestTimelinePage, { hashtag: val, hash: true });
   }
@@ -569,7 +578,8 @@ export class TimelinePage {
   }
 
   commentPost(post) {
-    console.log(post)
+    // console.log("post");
+    // console.log(post);
     let modal = this.modalCtrl.create(CommentsPage, { postKey: post.$key });
     modal.present();
   }
@@ -587,10 +597,12 @@ export class TimelinePage {
   locationAddress(location, success) {
 
     this.nativeGeocoder.reverseGeocode(location.lat, location.long)
-      .then((result: NativeGeocoderReverseResult) => {
-        console.log(JSON.stringify(result));
+      .then((result) => {
+        // console.log("JSON.stringify(result)");
+        // console.log(JSON.stringify(result));
         success(result);
-      }).catch((error: any) => console.log(error));
+      }).catch((error: any) => console.log(error)
+      );
   }
 
   //View User  

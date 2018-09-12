@@ -54,9 +54,9 @@ export class InterestTimelinePage {
     this.angularDb.list('accounts').subscribe(users => {
       this.users = [];
       users.forEach(user => {
-        const {img, name, username, userId, description} = user;
+        const { img, name, username, userId, description } = user;
 
-        this.users.unshift({avatar: img, name, username, userId, description});
+        this.users.unshift({ avatar: img, name, username, userId, description });
       });
     });
 
@@ -134,7 +134,7 @@ export class InterestTimelinePage {
           });
           this.search = this.navParams.get('hashtag');
           this.hash = this.navParams.get('hash');
-          if (this.hash) 
+          if (this.hash)
             this.icons = 'hashtag';
 
         });
@@ -153,7 +153,7 @@ export class InterestTimelinePage {
 
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
 
     let myElement = (<HTMLDivElement>document.getElementById("storiessearch"));
 
@@ -169,7 +169,7 @@ export class InterestTimelinePage {
 
     }
 
-    
+
 
     var skins = {
       'Snapgram': {
@@ -206,7 +206,7 @@ export class InterestTimelinePage {
     var stories: any;
     this.angularDb.list('story').subscribe((stories) => {
       let feeds = [];
-      console.log('Story List', stories);      
+      console.log('Story List', stories);
       stories.forEach(story => {
         let feed = {
           id: story.$key,
@@ -218,12 +218,12 @@ export class InterestTimelinePage {
         }
 
         console.log('building feed', feed);
-        
+
         story.items.forEach((item, index) => {
-          const objItem = {id:index, ...item};
-          console.log('Building items',objItem);          
+          const objItem = { id: index, ...item };
+          console.log('Building items', objItem);
           feed.items.push(objItem);
-        })        
+        })
         feeds.unshift(feed);
       });
       stories = new (<any>window).Zuck('storiessearch', {
@@ -236,10 +236,10 @@ export class InterestTimelinePage {
         localStorage: true,
         stories: feeds
       });
-      
+
       // this.feeds = stories;
       console.log('Stories OBJ', feeds);
-      
+
     });
     this.load();
     this.loadingProvider.hide();
@@ -258,14 +258,14 @@ export class InterestTimelinePage {
 
 
   }
-  addProfile(){
+  addProfile() {
     console.log('adding profile is called.');
     this.navCtrl.push(AddUserPage);
   }
   locationAddress(location, success) {
 
     this.nativeGeocoder.reverseGeocode(location.lat, location.long)
-      .then((result: NativeGeocoderReverseResult) => {
+      .then((result) => {
         console.log(JSON.stringify(result));
         success(result);
       }).catch((error: any) => console.log(error));
@@ -376,7 +376,7 @@ export class InterestTimelinePage {
   }
 
   //view post when square img
-  viewPost(post){
+  viewPost(post) {
     this.navCtrl.push(ViewPostPage, { post: post });
   }
 
@@ -385,7 +385,7 @@ export class InterestTimelinePage {
     this.navCtrl.push(UserInfoPage, { userId: userId });
   }
 
-  back(){
+  back() {
     this.navCtrl.pop();
   }
 

@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-navbar >    
-    <ion-title >{{hash?search: 'Search'}}</ion-title>
+  <ion-navbar>
+    <ion-title>{{hash?search: 'Search'}}</ion-title>
   </ion-navbar>
   <ion-toolbar color="light">
     <ion-searchbar [(ngModel)]="search"></ion-searchbar>
@@ -22,7 +22,7 @@
   </ion-segment>
 
   <div #storiessearch id="storiessearch" padding=""></div>
-  
+
   <div [ngSwitch]="icons">
     <div *ngSwitchCase="'post'">
       <div>
