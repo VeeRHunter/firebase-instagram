@@ -313,6 +313,25 @@ export class FirebaseProvider {
     });
   }
 
+  //tagsPost
+  tagsPost(tagData) {
+    let loggedInUserId = firebase.auth().currentUser.uid;
+
+    this.loadingProvider.show();
+    this.dataProvider.getUser(loggedInUserId).take(1).subscribe((account) => {
+      var tagsList = tagData;
+
+      this.dataProvider.getUser(loggedInUserId).update({
+        tagsList
+      }).then((success) => {
+        this.loadingProvider.hide();
+      }).catch((error) => {
+        console.log(error);
+        this.loadingProvider.hide();
+      });
+    });
+  }
+
   // ==== Like postBy
   likePost(key) {
     return new Promise((resolve, reject) => {

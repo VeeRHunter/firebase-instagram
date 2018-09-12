@@ -81,6 +81,8 @@ import { PostOptionsComponent } from '../components/post-options/post-options';
 import { HashtagPipe } from '../pipes/hashtag/hashtag';
 import { SafePipe } from '../pipes/safe/safe';
 import { ProfilenamePipe } from '../pipes/profilename/profilename';
+import { IonTagsInputModule } from "ionic-tags-input";
+import { TagsPartPage } from '../pages/tags-part/tags-part';
 
 
 
@@ -117,6 +119,7 @@ firebase.initializeApp(Login.firebaseConfig);
     AddPostPage,
     CommentsPage,
     SettingsPage,
+    TagsPartPage,
     FavoritesPage,
     AddUserPage,
     PostOptionsComponent,
@@ -143,7 +146,8 @@ firebase.initializeApp(Login.firebaseConfig);
       autoFocusAssist: false
     }),
     AngularFireModule.initializeApp(Login.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    IonTagsInputModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -169,6 +173,7 @@ firebase.initializeApp(Login.firebaseConfig);
     ImageModalPage,
     TimelinePage,
     AddPostPage,
+    TagsPartPage,
     CommentsPage,
     SettingsPage,
     FavoritesPage,    

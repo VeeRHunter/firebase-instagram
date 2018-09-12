@@ -36,6 +36,7 @@
     </ion-col>
   </ion-row>
 
+
   <ion-card *ngFor="let item of timelineData">
     <ion-item>
       <ion-avatar item-left tappable (click)="viewUser(item.postBy)">
@@ -48,12 +49,6 @@
 
     <img src="{{item.image}}" style="height:320px" *ngIf="item.image" (click)="enlargeImage(item.image)">
 
-    <!-- <video *ngIf="item.video" width="320" height="240" controls>
-      <source src="{{item.video}}" type="video/mp4">
-      <source src="{{item.video}}" type="video/ogg"> 
-        Your browser does not support the video tag.
-    </video> -->
-    <!--<img src="{{item.location}}" style="height:200px" *ngIf="item.location" (click)="openMap(item.lat,item.long)">-->
     <ion-row text-center>
       <ion-col>
         <button ion-button icon-only clear large color="dark" (click)="likePost(item)" *ngIf="!item.isLike">
@@ -62,6 +57,14 @@
         <button ion-button icon-only clear large color="danger" (click)="delikePost(item)" *ngIf="item.isLike">
           <ion-icon name="ios-heart"></ion-icon>
         </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-only clear large color="dark" (click)="openTags()">
+          <i class="fa fa-tags"></i>
+        </button>
+        <!-- <button ion-button icon-only clear large color="danger" (click)="delikePost(item)" *ngIf="item.isLike">
+          <ion-icon name="ios-heart"></ion-icon>
+        </button> -->
       </ion-col>
       <ion-col>
         <button ion-button icon-only clear large color="dark" (click)="commentPost(item)" *ngIf="!item.isComment">

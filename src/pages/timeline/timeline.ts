@@ -18,6 +18,7 @@ import { InterestTimelinePage } from '../../pages/interest-timeline/interest-tim
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TabsService } from "../../util/tabservice";
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { TagsPartPage } from '../tags-part/tags-part';
 
 
 
@@ -71,6 +72,11 @@ export class TimelinePage {
       'cubeEffect': false
     }
   };
+
+
+  public tagsItem = [];
+  public locationItem = [];
+  public channelItem = [];
 
   @ViewChild(Content)
   content: Content;
@@ -165,6 +171,8 @@ export class TimelinePage {
       // console.log('timelineids', timelineIds);
 
       this.user = user;
+      console.log("this.user");
+      console.log(this.user);
       if (this.user.following && timelineIds) {
         timelineIds = [...timelineIds, ...this.user.following];
       } else {
@@ -609,6 +617,22 @@ export class TimelinePage {
   //View User  
   viewUser(userId) {
     this.navCtrl.push(UserInfoPage, { userId: userId });
+  }
+
+  onChange(val: string) {
+    console.log(val)
+  }
+
+  onFocus() {
+    console.log('Focus')
+  }
+
+  onBlur() {
+    console.log('Blur')
+  }
+
+  openTags() {
+    this.navCtrl.push(TagsPartPage);
   }
 
 }
