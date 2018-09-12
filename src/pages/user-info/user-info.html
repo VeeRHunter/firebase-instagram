@@ -46,21 +46,21 @@
       </button>
 
       <ion-row text-center="">
-          <div col-4>
-             <button ion-button icon-only  round color="danger" class="circleBtn" (click) ="onBookmark()">
-                <ion-icon name="bookmark"></ion-icon>
-             </button>
-          </div>
-          <div col-4>
-              <button ion-button icon-only  round color="green" class="circleBtn" (click) ="onEdit()">
-                  <ion-icon name="create"></ion-icon>
-               </button>
-          </div>
-          <div col-4>
-              <button ion-button icon-only  round color="primary" class="circleBtn" (click) ="onNotification()">
-                  <ion-icon name="notifications"></ion-icon>
-               </button>
-          </div>
+        <div col-4>
+          <button ion-button icon-only round color="danger" class="circleBtnSuccess" (click)="bookmarkPost(user)">
+            <ion-icon name="bookmark" [ngClass]="(isFavorite(user))?'favorite':''"></ion-icon>
+          </button>
+        </div>
+        <div col-4>
+          <button ion-button icon-only round color="green" class="circleBtnSuccess" (click)="onEdit()">
+            <ion-icon name="create"></ion-icon>
+          </button>
+        </div>
+        <div col-4>
+          <button ion-button icon-only round color="primary" class="circleBtnSuccess" (click)="onNotification(user)">
+            <ion-icon name="notifications" [ngClass]="(isAlert(user))?'favorite':''"></ion-icon>
+          </button>
+        </div>
 
       </ion-row>
 

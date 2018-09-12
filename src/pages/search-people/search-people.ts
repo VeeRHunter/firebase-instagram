@@ -4,7 +4,7 @@ import { DataProvider } from '../../providers/data';
 import { LoadingProvider } from '../../providers/loading';
 import { AlertProvider } from '../../providers/alert';
 import { FirebaseProvider } from '../../providers/firebase';
-import {AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { UserInfoPage } from '../user-info/user-info';
 import { SettingsPage } from '../settings/settings';
 import { AddUserPage } from '../add-user/add-user';
@@ -25,7 +25,7 @@ export class SearchPeoplePage {
   // SearchPeoplePage
   // This is the page where the user can search for other users and send a friend request.
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public loadingProvider: LoadingProvider,
-    public alertCtrl: AlertController, public angularDb:AngularFireDatabase, public alertProvider: AlertProvider, public firebaseProvider: FirebaseProvider) { }
+    public alertCtrl: AlertController, public angularDb: AngularFireDatabase, public alertProvider: AlertProvider, public firebaseProvider: FirebaseProvider) { }
 
   ionViewDidLoad() {
     // Initialize
@@ -34,6 +34,7 @@ export class SearchPeoplePage {
     // Get all users.
     this.dataProvider.getUsers().subscribe((accounts) => {
       this.loadingProvider.hide();
+      console.log(accounts);
       this.accounts = accounts;
       this.dataProvider.getCurrentUser().subscribe((account) => {
         // Add own userId as exludedIds.
@@ -56,7 +57,7 @@ export class SearchPeoplePage {
         if (account.following) {
           this.following = account.following;
         }
-        
+
         // Get requests of the currentUser.
         this.dataProvider.getRequests(account.$key).subscribe((requests) => {
           this.requestsSent = requests.requestsSent;
@@ -92,9 +93,9 @@ export class SearchPeoplePage {
         }
       }
     }
-    if (this.following){
-      for(var i =0; i < this.following.length; i++ ){
-        if(this.following[i] == user.$key){
+    if (this.following) {
+      for (var i = 0; i < this.following.length; i++) {
+        if (this.following[i] == user.$key) {
           return 3;
         }
       }
@@ -169,37 +170,61 @@ export class SearchPeoplePage {
   }
 
   //Follow User
-  follow(user){
+  follow(user) {
     this.firebaseProvider.followUser(user.$key);
   }
 
   //unfollow User
-  unfollow(user){
-    this.firebaseProvider.unfollowUser(user.$key);    
+  unfollow(user) {
+    this.firebaseProvider.unfollowUser(user.$key);
   }
 
   // View user.
   viewUser(userId) {
-    this.navCtrl.push(UserInfoPage, {userId: userId});
+    this.navCtrl.push(UserInfoPage, { userId: userId });
   }
 
   //bookmark clicked
-  onBookmark(user){
-
+  onBookmark(user) {
+    this.firebaseProvider.bookmarkPost(user.$key);
   }
 
   //edit clicked
-  onEdit(user){
-    this.navCtrl.push(SettingsPage,{userid : user});
+  onEdit(user) {
+    this.navCtrl.push(SettingsPage, { userid: user });
   }
   //edit notification
-  onNotification(user){
+  onNotification(user) {
 
   }
 
-  addProfile(){
+  addProfile() {
     console.log('adding profile is called.');
     this.navCtrl.push(AddUserPage);
+  }
+
+  isFavorite(post) {
+    const { bookmark } = this.account;
+
+    if (!bookmark)
+      return false;
+
+    if (bookmark.indexOf(post.$key) !== -1)
+      return true;
+
+    return false;
+  }
+
+  isAlert(post) {
+    const { alerts } = this.account;
+
+    if (!alerts)
+      return false;
+
+    if (alerts.indexOf(post.$key) !== -1)
+      return true;
+
+    return false;
   }
 
 

@@ -558,6 +558,7 @@ export class TimelinePage {
   }
 
   bookmarkPost(post) {
+    console.log(post.$key);
     this.firebaseProvider.bookmarkPost(post.$key);
   }
 

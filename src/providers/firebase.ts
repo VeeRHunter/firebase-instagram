@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingProvider } from './loading';
 import { AlertProvider } from './alert';
 import { DataProvider } from './data';
@@ -12,7 +12,7 @@ export class FirebaseProvider {
   // Firebase Provider
   // This is the provider class for most of the Firebase updates in the app.
 
-  constructor(public angularDb:AngularFireDatabase, public loadingProvider: LoadingProvider, public alertProvider: AlertProvider, public dataProvider: DataProvider) {
+  constructor(public angularDb: AngularFireDatabase, public loadingProvider: LoadingProvider, public alertProvider: AlertProvider, public dataProvider: DataProvider) {
     console.log("Initializing Firebase Provider");
   }
 
@@ -28,7 +28,7 @@ export class FirebaseProvider {
       if (!requestsSent) {
         requestsSent = [userId];
       } else {
-        if(requestsSent.indexOf(userId) == -1)
+        if (requestsSent.indexOf(userId) == -1)
           requestsSent.push(userId);
       }
       // Add requestsSent information.
@@ -41,7 +41,7 @@ export class FirebaseProvider {
           if (!friendRequests) {
             friendRequests = [loggedInUserId];
           } else {
-            if(friendRequests.indexOf(userId) == -1)
+            if (friendRequests.indexOf(userId) == -1)
               friendRequests.push(loggedInUserId);
           }
           // Add friendRequest information.
@@ -167,7 +167,7 @@ export class FirebaseProvider {
   }
 
   //Follow User
-  followUser(userId){
+  followUser(userId) {
     let loggedInUserId = firebase.auth().currentUser.uid;
 
     this.loadingProvider.show();
@@ -177,15 +177,15 @@ export class FirebaseProvider {
         following = [userId];
       } else {
         following.push(userId);
-      }          
-      
+      }
+
       this.dataProvider.getUser(loggedInUserId).update({
         following: following
       }).then((success) => {
         this.dataProvider.getUser(userId).take(1).subscribe((data) => {
-          var followers = data.followers;          
-          
-          if (!followers){
+          var followers = data.followers;
+
+          if (!followers) {
             followers = [loggedInUserId];
           } else {
             followers.push(loggedInUserId);
@@ -196,14 +196,14 @@ export class FirebaseProvider {
         });
         this.loadingProvider.hide();
       }).catch((error) => {
-        console.log(error);        
+        console.log(error);
         this.loadingProvider.hide();
-      });        
+      });
     });
   }
 
   //Unfollow User
-  unfollowUser(userId){
+  unfollowUser(userId) {
     let loggedInUserId = firebase.auth().currentUser.uid;
 
     this.loadingProvider.show();
@@ -211,31 +211,31 @@ export class FirebaseProvider {
       var following = account.following;
 
       following.splice(following.indexOf(userId), 1);
-      
-      
+
+
       this.dataProvider.getUser(loggedInUserId).update({
         following: following
       }).then((success) => {
         this.dataProvider.getUser(userId).take(1).subscribe((data) => {
           var followers = data.followers;
           console.log('Unfollow', data);
-          
-          followers.splice(followers.indexOf(loggedInUserId),1);
+
+          followers.splice(followers.indexOf(loggedInUserId), 1);
           this.dataProvider.getUser(userId).update({
             followers: followers
           });
-        });      
-        
+        });
+
         this.loadingProvider.hide();
       }).catch((error) => {
-        console.log(error);        
+        console.log(error);
         this.loadingProvider.hide();
-      });        
+      });
     });
   }
 
   // TimeLine
-  timeline(timelineId){
+  timeline(timelineId) {
     let loggedInUserId = firebase.auth().currentUser.uid;
     this.dataProvider.getUser(loggedInUserId).take(1).subscribe((account) => {
       var timeline = account.timeline;
@@ -247,7 +247,7 @@ export class FirebaseProvider {
       // Add both users as friends.
       this.dataProvider.getUser(loggedInUserId).update({
         timeline: timeline
-      }).then((success) => {        
+      }).then((success) => {
 
       }).catch((error) => {
         this.loadingProvider.hide();
@@ -256,37 +256,66 @@ export class FirebaseProvider {
   }
 
   //Favorite
-  bookmarkPost(key){
+  bookmarkPost(key) {
     let loggedInUserId = firebase.auth().currentUser.uid;
 
     this.loadingProvider.show();
     this.dataProvider.getUser(loggedInUserId).take(1).subscribe((account) => {
-      var bookmark = account.bookmark;      
+      var bookmark = account.bookmark;
 
-      if (!bookmark){
+      if (!bookmark) {
         bookmark = [key];
       } else {
         if (bookmark.indexOf(key) === -1) {
           bookmark.push(key);
         } else {
           bookmark.splice(bookmark.indexOf(key), 1);
-        }     
-      }    
-      
+        }
+      }
+
       this.dataProvider.getUser(loggedInUserId).update({
         bookmark
       }).then((success) => {
         this.loadingProvider.hide();
       }).catch((error) => {
-        console.log(error);        
+        console.log(error);
         this.loadingProvider.hide();
-      });        
+      });
+    });
+  }
+
+  //alert
+  alertPost(key) {
+    let loggedInUserId = firebase.auth().currentUser.uid;
+
+    this.loadingProvider.show();
+    this.dataProvider.getUser(loggedInUserId).take(1).subscribe((account) => {
+      var alerts = account.alerts;
+
+      if (!alerts) {
+        alerts = [key];
+      } else {
+        if (alerts.indexOf(key) === -1) {
+          alerts.push(key);
+        } else {
+          alerts.splice(alerts.indexOf(key), 1);
+        }
+      }
+
+      this.dataProvider.getUser(loggedInUserId).update({
+        alerts
+      }).then((success) => {
+        this.loadingProvider.hide();
+      }).catch((error) => {
+        console.log(error);
+        this.loadingProvider.hide();
+      });
     });
   }
 
   // ==== Like postBy
-  likePost(key){
-    return new Promise((resolve,reject)=>{
+  likePost(key) {
+    return new Promise((resolve, reject) => {
       this.dataProvider.postLike(key).take(1).subscribe((likes) => {
         // console.log("likes=======",likes)
         var likes = likes;
@@ -301,7 +330,7 @@ export class FirebaseProvider {
           resolve(true)
         }).catch((error) => {
           this.loadingProvider.hide();
-          console.log("err",error)
+          console.log("err", error)
           reject(false)
         });
       });
@@ -309,51 +338,51 @@ export class FirebaseProvider {
   }
 
   //delete Post
-  deletePost(post){
-    this.loadingProvider.show();    
-    console.log(post);    
-    
+  deletePost(post) {
+    this.loadingProvider.show();
+    console.log(post);
+
     this.dataProvider.getTimelinesId(post.value).subscribe((data) => {
       this.dataProvider.getTimeline(post.key).remove();
       this.dataProvider.postLike(post.key).remove();
-      this.dataProvider.getComments(post.key).remove();       
+      this.dataProvider.getComments(post.key).remove();
     });
-    this.dataProvider.getTimelinesId(post.value).remove().then((success) =>{
+    this.dataProvider.getTimelinesId(post.value).remove().then((success) => {
       this.loadingProvider.hide();
-      console.log(success);      
+      console.log(success);
     }).catch((error) => {
       this.loadingProvider.hide();
-      console.log(error);      
+      console.log(error);
     });
   }
 
   // ==== Like postBy
-  delikePost(key){
-    return new Promise((resolve,reject)=>{
+  delikePost(key) {
+    return new Promise((resolve, reject) => {
       this.dataProvider.postLike(key).take(1).subscribe((likes) => {
         likes.splice(likes.indexOf(firebase.auth().currentUser.uid), 1);
-        if(likes.length){
+        if (likes.length) {
           //alert(likes.length)
-          this.angularDb.object('likes/'+key).remove()
+          this.angularDb.object('likes/' + key).remove()
 
           this.dataProvider.postLike(key).update(likes).then((success) => {
             // alert('sc')
             resolve(true)
           }).catch((error) => {
             this.loadingProvider.hide();
-            console.log("err",error)
+            console.log("err", error)
             reject(false)
           });
-        }else{
-          this.angularDb.object('likes/'+key).remove()
+        } else {
+          this.angularDb.object('likes/' + key).remove()
         }
 
-       });
+      });
     })
   }
 
-  commentPost(key,comment){
-    return new Promise((resolve,reject)=>{
+  commentPost(key, comment) {
+    return new Promise((resolve, reject) => {
       this.dataProvider.getComments(key).take(1).subscribe((comments) => {
         // console.log("commnets=======",comments)
         var comments = comments;
@@ -367,7 +396,7 @@ export class FirebaseProvider {
           resolve(true)
         }).catch((error) => {
           this.loadingProvider.hide();
-          console.log("err",error)
+          console.log("err", error)
           reject(false)
         });
       });

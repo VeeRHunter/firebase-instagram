@@ -21,6 +21,7 @@ export class UserInfoPage {
   private userId: any;
   private friendRequests: any;
   private requestsSent: any;
+  public currentUser: any;
   private friends: any;
   private alert: any;
   public timelineData: any;
@@ -37,8 +38,9 @@ export class UserInfoPage {
     this.loadingProvider.show();
     this.dataProvider.getCurrentUser().subscribe((user) => {
       console.log('user', user);
-      
-      if (user.following){
+      this.currentUser = user;
+
+      if (user.following) {
         this.following = user.following;
       } else {
         this.following = [];
@@ -48,6 +50,8 @@ export class UserInfoPage {
     // Get user info.
     this.dataProvider.getUser(this.userId).subscribe((user) => {
       this.user = user;
+      console.log("this.user");
+      console.log(this.user);
       this.loadingProvider.hide();
     });
     // Get friends of current logged in user.
@@ -168,19 +172,17 @@ export class UserInfoPage {
     this.navCtrl.pop();
   }
   //bookmark clicked
-  onBookmark(){
-
-  }
 
   //edit clicked
-  onEdit(){
+  onEdit() {
     this.navCtrl.push(SettingsPage);
   }
   //edit notification
-  onNotification(){
-
+  onNotification(post) {
+    this.firebaseProvider.alertPost(post.$key);
   }
-  
+
+
   // Accept friend request.
   acceptFriendRequest() {
     this.alert = this.alertCtrl.create({
@@ -290,17 +292,33 @@ export class UserInfoPage {
     this.firebaseProvider.likePost(post.$key)
   }
 
-  bookmarkPost(post) {    
+  bookmarkPost(post) {
     this.firebaseProvider.bookmarkPost(post.$key);
   }
 
+  alertPost(post) {
+    this.firebaseProvider.alertPost(post.$key);
+  }
+
   isFavorite(post) {
-    const { bookmark } = this.user;
+    const { bookmark } = this.currentUser;
 
     if (!bookmark)
       return false;
 
     if (bookmark.indexOf(post.$key) !== -1)
+      return true;
+
+    return false;
+  }
+
+  isAlert(post) {
+    const { alerts } = this.currentUser;
+
+    if (!alerts)
+      return false;
+
+    if (alerts.indexOf(post.$key) !== -1)
       return true;
 
     return false;
@@ -327,19 +345,19 @@ export class UserInfoPage {
   }
 
   //Follow User
-  follow(user){
+  follow(user) {
     this.firebaseProvider.followUser(user.$key);
   }
 
   //unfollow User
-  unfollow(user){
-    this.firebaseProvider.unfollowUser(user.$key);    
-   
+  unfollow(user) {
+    this.firebaseProvider.unfollowUser(user.$key);
+
   }
 
   // Get the status of the user in relation to the logged in user.
   getStatus(user) {
-    
+
     // Returns:
     // 0 when user can be requested as friend.
     // 1 when a friend request was already sent to this user.
@@ -355,8 +373,8 @@ export class UserInfoPage {
 
     console.log('USER', user);
     console.log('followers', this.following);
-    
-    
+
+
     if (this.friendRequests) {
       for (var i = 0; i < this.friendRequests.length; i++) {
         if (this.friendRequests[i] == user.$key) {
@@ -364,9 +382,9 @@ export class UserInfoPage {
         }
       }
     }
-    if (this.following){
-      for(var i =0; i < this.following.length; i++ ){
-        if(this.following[i] == user.$key){
+    if (this.following) {
+      for (var i = 0; i < this.following.length; i++) {
+        if (this.following[i] == user.$key) {
           return 3;
         }
       }
@@ -375,7 +393,7 @@ export class UserInfoPage {
   }
 
   //view post when square img
-  viewPost(post){
+  viewPost(post) {
     this.navCtrl.push(ViewPostPage, { post: post });
   }
 
