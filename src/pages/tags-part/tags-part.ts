@@ -50,7 +50,8 @@ export class TagsPartPage {
   }
 
   postTags() {
-    this.firebaseProvider.tagsPost(this.items);
+    console.log(this.items);
+    // this.firebaseProvider.tagsPost(this.items);
   }
 
 }

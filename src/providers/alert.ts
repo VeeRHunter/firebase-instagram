@@ -42,11 +42,11 @@ const errorMessages = {
   groupUpdate: { title: 'Update Group Failed!', subTitle: 'Sorry, but we\'ve encountered an error updating this group.' },
   groupLeave: { title: 'Leave Group Failed!', subTitle: 'Sorry, but you\'ve encountered an error leaving this group.' },
   groupDelete: { title: 'Delete Group Failed!', subTitle: 'Sorry, but we\'ve encountered an error deleting this group.' },
-  statusUpdateFailed : {title : 'Status Update Failed!',subTitle : 'Sorry,but we\'ve encountered an error updating status.'},
-  typeUpdateFailed : {title : 'Type Update Failed!',subTitle : 'Sorry,but we\'ve encountered an error updating type.'},
-  colorUpdateFailed : {title : 'Color Update Failed',subTitle : 'Sorry,but we\`ve encountered an error updating color.'},
-  emptyField : {title : 'Notice',subTitle : 'You have to provide all fields.'},
-  createUserSuccess : {title : 'Success',subTitle : 'New User created successfully.'}
+  statusUpdateFailed: { title: 'Status Update Failed!', subTitle: 'Sorry,but we\'ve encountered an error updating status.' },
+  typeUpdateFailed: { title: 'Type Update Failed!', subTitle: 'Sorry,but we\'ve encountered an error updating type.' },
+  colorUpdateFailed: { title: 'Color Update Failed', subTitle: 'Sorry,but we\`ve encountered an error updating color.' },
+  emptyField: { title: 'Notice', subTitle: 'You have to provide all fields.' },
+  createUserSuccess: { title: 'Success', subTitle: 'New User created successfully.' }
 };
 
 const successMessages = {
@@ -60,9 +60,9 @@ const successMessages = {
   friendRequestRemoved: { title: 'Friend Request Deleted!', subTitle: 'Your friend request has been successfully deleted.' },
   groupUpdated: { title: 'Group Updated!', subTitle: 'This group has been successfully updated!' },
   groupLeft: { title: 'Leave Group', subTitle: 'You have successfully left this group.' },
-  typeUpdated : {title : 'Type Update',subTitle : 'Type Successfully Updated.'},
-  statusUpdated : {title : 'Status Update',subTitle : 'Status Successfully Updated.'},
-  colorUpdated : {title : 'Color Update',subTitle : 'Color Successfully Update.'}
+  typeUpdated: { title: 'Type Update', subTitle: 'Type Successfully Updated.' },
+  statusUpdated: { title: 'Status Update', subTitle: 'Status Successfully Updated.' },
+  colorUpdated: { title: 'Color Update', subTitle: 'Color Successfully Update.' }
 };
 
 @Injectable()
@@ -91,15 +91,15 @@ export class AlertProvider {
       buttons: ['OK']
     }).present();
   }
-   // Show color
-   showColorUpdatedMessage() {
+  // Show color
+  showColorUpdatedMessage() {
     this.alert = this.alertCtrl.create({
       title: successMessages.colorUpdated["title"],
       subTitle: successMessages.colorUpdated["subTitle"],
       buttons: ['OK']
     }).present();
   }
-  
+
   // Show profile updated
   showStatusUpdatedMessage() {
     this.alert = this.alertCtrl.create({
@@ -390,46 +390,46 @@ export class AlertProvider {
           buttons: ['OK']
         }).present();
         break;
-      case 'profile/update-type-failed' :
+      case 'profile/update-type-failed':
         this.alert = this.alertCtrl.create({
           title: errorMessages.typeUpdateFailed["title"],
           subTitle: errorMessages.typeUpdateFailed["subTitle"],
           buttons: ['OK']
         }).present();
-      break;
-      case 'profile/update-status-failed' :
+        break;
+      case 'profile/update-status-failed':
         this.alert = this.alertCtrl.create({
           title: errorMessages.statusUpdateFailed["title"],
           subTitle: errorMessages.statusUpdateFailed["subTitle"],
           buttons: ['OK']
         }).present();
-      break;
+        break;
       case 'profile/update-color-failed':
         this.alert = this.alertCtrl.create({
-          title   : errorMessages.colorUpdateFailed["title"],
+          title: errorMessages.colorUpdateFailed["title"],
           subTitle: errorMessages.colorUpdateFailed["subTitle"],
-          buttons : ['OK']
+          buttons: ['OK']
         }).present();
-      break;
+        break;
       case 'profile/create_empty_field':
         this.alert = this.alertCtrl.create({
-          title   : errorMessages.emptyField["title"],
+          title: errorMessages.emptyField["title"],
           subTitle: errorMessages.emptyField["subTitle"],
-          buttons : ['OK']
+          buttons: ['OK']
         }).present();
-      break;
+        break;
       case 'profile/create_user_success':
         this.alert = this.alertCtrl.create({
-          title   : errorMessages.createUserSuccess["title"],
+          title: errorMessages.createUserSuccess["title"],
           subTitle: errorMessages.createUserSuccess["subTitle"],
-          buttons : ['OK']
+          buttons: ['OK']
         }).present();
-      break;
-      
+        break;
+
     }
   }
-  showToast(msg){
-    this.toast.show(msg,'5000','bottom').subscribe(
+  showToast(msg) {
+    this.toast.show(msg, '5000', 'bottom').subscribe(
       toast => {
         console.log(toast);
       }

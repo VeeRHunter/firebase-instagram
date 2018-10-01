@@ -15,7 +15,7 @@ export class LoadingProvider {
     console.log("Initializing Loading Provider");
   }
 
-  //Show loading
+  // Show loading
   show() {
     if (!this.loading) {
       this.loading = this.loadingController.create(this.spinner);
@@ -23,7 +23,7 @@ export class LoadingProvider {
     }
   }
 
-  //Hide loading
+  // Hide loading
   hide() {
     if (this.loading) {
       this.loading.dismiss();

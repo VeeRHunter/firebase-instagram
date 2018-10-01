@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
 
 @Injectable()
@@ -7,7 +7,7 @@ export class DataProvider {
   // Data Provider
   // This is the provider class for most of the Firebase observables in the app.
 
-  constructor(public angularDb:AngularFireDatabase) {
+  constructor(public angularDb: AngularFireDatabase) {
     console.log("Initializing Data Provider");
   }
 
@@ -86,53 +86,53 @@ export class DataProvider {
   }
 
   // Get Timeline of user
-  getTimelines(){
+  getTimelines() {
     return this.angularDb.list('/accounts/' + firebase.auth().currentUser.uid + '/timeline');
   }
 
   // Get Timeline of user
-  getTimelinesId(timelineId){
+  getTimelinesId(timelineId) {
     const res = this.angularDb.object('/accounts/' + firebase.auth().currentUser.uid + '/timeline/' + timelineId);
     console.log(res);
-    
+
     return res;
   }
 
   // Get Timeline post
-  getTimelinePost(){
+  getTimelinePost() {
     return this.angularDb.list('/timeline');
   }
 
   // Get time line by id
-  getTimeline(timelineId){
+  getTimeline(timelineId) {
     return this.angularDb.object('/timeline/' + timelineId)
   }
 
-  getInterests(timelineId){
+  getInterests(timelineId) {
     return this.angularDb.list('/accounts/' + timelineId + '/timeline');
   }
 
   // Get Friend List
-  getFriends(){
+  getFriends() {
     return this.angularDb.list('/accounts/' + firebase.auth().currentUser.uid + '/friends');
   }
 
   // Get comments list
-  getComments(postId){
-    return this.angularDb.list('/comments/'+postId)
+  getComments(postId) {
+    return this.angularDb.list('/comments/' + postId)
   }
 
   // Get likes
-  getLike(postId){
-    return this.angularDb.list('/likes/'+postId)
+  getLike(postId) {
+    return this.angularDb.list('/likes/' + postId)
   }
 
-  postLike(postId){
-    return this.angularDb.object('/likes/'+postId)
+  postLike(postId) {
+    return this.angularDb.object('/likes/' + postId)
   }
 
   // post Comments
-  postComments(postId){
-    return this.angularDb.object('/comments/'+postId)
+  postComments(postId) {
+    return this.angularDb.object('/comments/' + postId)
   }
 }

@@ -22,8 +22,8 @@ export namespace Login {
     // messagingSenderId: "1021716760482"
     apiKey: "AIzaSyBWZbSJSBOj-T0B1dlrUdZ1pZpnoXXkjPE",
     authDomain: "pask-3b58f.firebaseapp.com",
-    databaseURL: "https://pask-3b58f.firebaseio.com",
     projectId: "pask-3b58f",
+    databaseURL: "https://pask-3b58f.firebaseio.com",
     storageBucket: "pask-3b58f.appspot.com",
     messagingSenderId: "216913801893"
 

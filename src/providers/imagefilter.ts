@@ -1,8 +1,8 @@
 /**
  * Created by Avell on 11/05/2017.
  */
-import {Directive, ElementRef, HostListener, Input, OnChanges, SimpleChanges, Renderer} from '@angular/core';
-import {FilterService} from "../util/filterservice";
+import { Directive, ElementRef, HostListener, Input, OnChanges, SimpleChanges, Renderer } from '@angular/core';
+import { FilterService } from "../util/filterservice";
 @Directive({
   selector: '[brightness]'
 })
